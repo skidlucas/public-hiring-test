@@ -1,8 +1,9 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { typeorm } from "../config/dataSource";
-import { CarbonEmissionFactorsModule } from "./carbonEmissionFactor/carbonEmissionFactors.module";
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeorm } from '../config/dataSource';
+import { CarbonEmissionFactorsModule } from './carbonEmissionFactor/carbonEmissionFactors.module';
+import { UtilsModule } from './utils/utils.module';
 
 @Module({
   imports: [
@@ -13,9 +14,10 @@ import { CarbonEmissionFactorsModule } from "./carbonEmissionFactor/carbonEmissi
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) =>
-        configService.getOrThrow("typeorm"),
+        configService.getOrThrow('typeorm'),
     }),
     CarbonEmissionFactorsModule,
+    UtilsModule,
   ],
 })
 export class AppModule {}

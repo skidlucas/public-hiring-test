@@ -1,31 +1,44 @@
-import { GreenlyDataSource, dataSource } from "../../config/dataSource";
-import { CarbonEmissionFactor } from "../carbonEmissionFactor/carbonEmissionFactor.entity";
+import { dataSource, GreenlyDataSource } from '../../config/dataSource';
+import { CarbonEmissionFactor } from './carbonEmissionFactor.entity';
 
-let chickenEmissionFactor: CarbonEmissionFactor;
 beforeAll(async () => {
   await dataSource.initialize();
-  chickenEmissionFactor = new CarbonEmissionFactor({
-    emissionCO2eInKgPerUnit: 2.4,
-    unit: "kg",
-    name: "chicken",
-    source: "Agrybalise",
-  });
 });
+
 beforeEach(async () => {
   await GreenlyDataSource.cleanDatabase();
 });
-describe("FoodProductEntity", () => {
-  describe("constructor", () => {
-    it("should create an emission factor", () => {
-      expect(chickenEmissionFactor.name).toBe("chicken");
+
+describe('FoodProductEntity', () => {
+  describe('constructor', () => {
+    it('should create an emission factor', () => {
+      const chickenEmissionFactor = new CarbonEmissionFactor({
+        emissionCO2eInKgPerUnit: 2.4,
+        unit: 'kg',
+        name: 'chicken',
+        source: 'Agrybalise',
+      });
+
+      expect(chickenEmissionFactor.name).toBe('chicken');
     });
-    it("should throw an error if the source is empty", () => {
+
+    it('should create an emission factor with null emission', () => {
+      const unknownEmissionFactor = new CarbonEmissionFactor({
+        unit: 'kg',
+        name: 'unknown',
+        source: 'Agrybalise',
+      });
+      expect(unknownEmissionFactor.name).toBe('unknown');
+      expect(unknownEmissionFactor.emissionCO2eInKgPerUnit).toBe(null);
+    });
+
+    it('should throw an error if the source is empty', () => {
       expect(() => {
-        const carbonEmissionFactor = new CarbonEmissionFactor({
+        new CarbonEmissionFactor({
           emissionCO2eInKgPerUnit: 2.4,
-          unit: "kg",
-          name: "chicken",
-          source: "",
+          unit: 'kg',
+          name: 'chicken',
+          source: '',
         });
       }).toThrow();
     });
