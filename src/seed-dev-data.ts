@@ -1,5 +1,6 @@
 import { dataSource } from '../config/dataSource';
 import { CarbonEmissionFactor } from './carbonEmissionFactor/carbonEmissionFactor.entity';
+import { FoodProduct } from './food-product/food-product.entity';
 
 export const TEST_CARBON_EMISSION_FACTORS = [
   {
@@ -84,3 +85,20 @@ export const seedTestCarbonEmissionFactors = async () => {
 if (require.main === module) {
   seedTestCarbonEmissionFactors().catch((e) => console.error(e));
 }
+
+export const vinaigrette = new FoodProduct({
+  carbonFootprint: 0.34,
+  name: 'vinaigrette',
+  ingredients: [
+    {
+      name: 'oliveOil',
+      quantity: 0.2,
+      unit: 'kg',
+    },
+    {
+      name: 'vinegar',
+      quantity: 0.1,
+      unit: 'kg',
+    },
+  ],
+});

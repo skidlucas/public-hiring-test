@@ -23,4 +23,13 @@ export class UtilsService {
         throw new Error('Unit not valid or not implemented');
     }
   }
+
+  normalize(str: string): string {
+    return str
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ')
+      .replace(/’/g, "'");
+  }
 }

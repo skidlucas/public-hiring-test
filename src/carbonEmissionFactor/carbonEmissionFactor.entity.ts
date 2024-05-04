@@ -7,7 +7,6 @@ export class CarbonEmissionFactor extends BaseEntity {
 
   @Column({
     nullable: false,
-    unique: true,
   })
   name: string;
 
@@ -18,7 +17,7 @@ export class CarbonEmissionFactor extends BaseEntity {
 
   @Column({
     type: 'float',
-    nullable: true,
+    nullable: false,
   })
   emissionCO2eInKgPerUnit: number;
 
@@ -36,14 +35,14 @@ export class CarbonEmissionFactor extends BaseEntity {
   constructor(props: {
     name: string;
     unit: string;
-    emissionCO2eInKgPerUnit?: number;
+    emissionCO2eInKgPerUnit: number;
     source: string;
   }) {
     super();
 
     this.name = props?.name;
     this.unit = props?.unit;
-    this.emissionCO2eInKgPerUnit = props?.emissionCO2eInKgPerUnit ?? null!;
+    this.emissionCO2eInKgPerUnit = props?.emissionCO2eInKgPerUnit;
     this.source = props?.source;
     this.sanitize();
   }

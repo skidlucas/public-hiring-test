@@ -1,5 +1,4 @@
-import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateCarbonEmissionFactorDto {
   @IsString()
@@ -13,25 +12,4 @@ export class CreateCarbonEmissionFactorDto {
 
   @IsString()
   source: string;
-}
-
-export class CreateCarbonEmissionFactorFromProductDto {
-  @IsString()
-  name: string;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => FoodIngredientDto)
-  ingredients: FoodIngredientDto[];
-}
-
-export class FoodIngredientDto {
-  @IsString()
-  name: string;
-
-  @IsNumber()
-  quantity: number;
-
-  @IsString()
-  unit: string;
 }

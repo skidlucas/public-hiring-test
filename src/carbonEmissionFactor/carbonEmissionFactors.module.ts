@@ -3,11 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CarbonEmissionFactor } from './carbonEmissionFactor.entity';
 import { CarbonEmissionFactorsService } from './carbonEmissionFactors.service';
 import { CarbonEmissionFactorsController } from './carbonEmissionFactors.controller';
-import { UtilsModule } from '../utils/utils.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CarbonEmissionFactor]), UtilsModule],
+  imports: [TypeOrmModule.forFeature([CarbonEmissionFactor])],
   providers: [CarbonEmissionFactorsService],
   controllers: [CarbonEmissionFactorsController],
+  exports: [CarbonEmissionFactorsService],
 })
 export class CarbonEmissionFactorsModule {}

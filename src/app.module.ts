@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeorm } from '../config/dataSource';
 import { CarbonEmissionFactorsModule } from './carbonEmissionFactor/carbonEmissionFactors.module';
 import { UtilsModule } from './utils/utils.module';
+import { FoodProductModule } from './food-product/food-product.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UtilsModule } from './utils/utils.module';
     }),
     CarbonEmissionFactorsModule,
     UtilsModule,
+    FoodProductModule,
   ],
 })
 export class AppModule {}

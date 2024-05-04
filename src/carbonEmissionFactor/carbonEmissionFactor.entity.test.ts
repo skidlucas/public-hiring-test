@@ -22,16 +22,6 @@ describe('FoodProductEntity', () => {
       expect(chickenEmissionFactor.name).toBe('chicken');
     });
 
-    it('should create an emission factor with null emission', () => {
-      const unknownEmissionFactor = new CarbonEmissionFactor({
-        unit: 'kg',
-        name: 'unknown',
-        source: 'Agrybalise',
-      });
-      expect(unknownEmissionFactor.name).toBe('unknown');
-      expect(unknownEmissionFactor.emissionCO2eInKgPerUnit).toBe(null);
-    });
-
     it('should throw an error if the source is empty', () => {
       expect(() => {
         new CarbonEmissionFactor({
